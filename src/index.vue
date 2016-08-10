@@ -10,8 +10,9 @@
       <p class="title">地址：{{item.url}}</p>
       <p class="title">时间：{{item.date | date 'MM-dd hh:mm:ss'}}</p>
       <p class="desc">
-        响应：{{item.msg || item.value}}
+        响应：{{item.msg}}
       </p>
+      <br />
       <p class="desc">UA: {{item.ua}}</p>
     </div>
     <p class="more" @click="nextPage">点击加载更多</p>
@@ -86,7 +87,8 @@
             _res.data.data.list.forEach(item => {
               tempArr = {
                 title: item.content.indexOf('pageError') > -1 ? '页面错误' : '服务端错误',
-                desc: JSON.parse(item.content).value,
+                msg: JSON.parse(item.content).value || JSON.parse(item.content).msg,
+                ua: JSON.parse(item.content).ua,
                 url: JSON.parse(item.content).url,
                 date: item.createAt
               };
