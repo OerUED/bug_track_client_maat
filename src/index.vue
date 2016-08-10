@@ -10,8 +10,9 @@
       <p class="title">地址：{{item.url}}</p>
       <p class="title">时间：{{item.date | date 'MM-dd hh:mm:ss'}}</p>
       <p class="desc">
-        响应：{{item.desc}}
+        响应：{{item.msg || item.value}}
       </p>
+      <p class="desc">UA: {{item.ua}}</p>
     </div>
     <p class="more" @click="nextPage">点击加载更多</p>
   </div>
