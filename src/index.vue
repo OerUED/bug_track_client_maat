@@ -7,7 +7,7 @@
   <div class="wrap">
     <p>错误日志</p>
     <div v-for="item in data" class="item">
-      <p class="title">地址：{{item.url}}</p>
+      <p class="title">地址：{{item.url}}  line: {{item.line}} col: {{item.col}}</p>
       <p class="title">时间：{{item.date | date 'MM-dd hh:mm:ss'}}</p>
       <p class="desc">
         响应：{{item.msg}}
@@ -90,7 +90,9 @@
                 msg: JSON.parse(item.content).value || JSON.parse(item.content).msg,
                 ua: JSON.parse(item.content).ua,
                 url: JSON.parse(item.content).url,
-                date: item.createAt
+                date: item.createAt,
+                line: JSON.parse(item.content).line,
+                col: JSON.parse(item.content).col
               };
               that.data.push(tempArr);
             });
