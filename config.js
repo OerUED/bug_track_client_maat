@@ -10,7 +10,7 @@ module.exports = {
     productionSourceMap: true
   },
   dev: {
-    port: 8079,
+    port: 30709,
     proxyTable: {}
   }
 };

@@ -80,6 +80,9 @@
       nextPage () {
         let that = this;
         let params = Object.assign({page: this.pageIndex++, size: 10}, filt[that.filt], {startTime: this.startTime, endTime: this.endTime});
+        if (that.$route.query.kwd) {
+          params.keyword = that.$route.query.kwd;
+        }
         let tempArr = [];
         that.isloading = true;
         service.list(params).then(function (_res) {
