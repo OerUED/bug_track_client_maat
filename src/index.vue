@@ -83,6 +83,9 @@
         if (that.$route.query.kwd) {
           params.keyword = that.$route.query.kwd;
         }
+        if (that.$route.query.appKey) {
+          params.appKey = that.$route.query.appKey;
+        }
         let tempArr = [];
         that.isloading = true;
         service.list(params).then(function (_res) {
