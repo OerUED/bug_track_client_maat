@@ -91,15 +91,27 @@
         service.list(params).then(function (_res) {
           if (_res.data.code === 200) {
             _res.data.data.list.forEach(item => {
-              tempArr = {
-                title: item.content.indexOf('pageError') > -1 ? '页面错误' : '服务端错误',
-                msg: JSON.parse(item.content).value || JSON.parse(item.content).msg,
-                ua: JSON.parse(item.content).ua,
-                url: JSON.parse(item.content).url,
-                date: item.createAt,
-                line: JSON.parse(item.content).line,
-                col: JSON.parse(item.content).col
-              };
+              try {
+                tempArr = {
+                  title: item.content.indexOf('pageError') > -1 ? '页面错误' : '服务端错误',
+                  msg: JSON.parse(item.content).value || JSON.parse(item.content).msg,
+                  ua: JSON.parse(item.content).ua,
+                  url: JSON.parse(item.content).url,
+                  date: item.createAt,
+                  line: JSON.parse(item.content).line,
+                  col: JSON.parse(item.content).col
+                };
+              } catch (e) {
+                tempArr = {
+                  title: '服务端错误',
+                  msg: item.content.toString(),
+                  ua: '',
+                  url: '',
+                  date: item.createAt,
+                  line: '',
+                  col: ''
+                };
+              }
               that.data.push(tempArr);
             });
           }
